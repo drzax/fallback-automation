@@ -15,7 +15,6 @@
 		"format": "prettier --write ."
 	},
 	"devDependencies": {
-		"@playwright/test": "^1.28.1",
 		"@sveltejs/adapter-auto": "^3.0.0",
 		"@sveltejs/kit": "^2.0.0",
 		"@sveltejs/vite-plugin-svelte": "^3.0.0",
@@ -29,7 +28,7 @@
 	},
 	"type": "module",
 	"dependencies": {
-		"@sparticuz/chromium-min": "^130.0.0",
-		"puppeteer-core": "^23.6.0"
+		"@sparticuz/chromium": "143.0.4",
+		"puppeteer-core": "^24.37.3"
 	}
 }

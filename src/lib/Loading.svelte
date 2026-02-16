@@ -1,9 +1,16 @@
 <script>
 	import Worm from './Worm/Worm.svelte';
+	/**
+	 * @typedef {Object} Props
+	 * @property {import('svelte').Snippet} [children]
+	 */
+
+	/** @type {Props} */
+	let { children } = $props();
 </script>
 
 <div class="loading">
-	<slot />
+	{@render children?.()}
 	<div class="worm">
 		<Worm />
 	</div>

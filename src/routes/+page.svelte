@@ -1,28 +1,30 @@
 <script>
+	import { run } from 'svelte/legacy';
+
 	import { browser } from '$app/environment';
 	import Loading from '$lib/Loading.svelte';
 	import { download, fetchImageBlob } from '$lib/utils';
 	import { onMount } from 'svelte';
 
 	/** @type {string} */
-	let url = '';
+	let url = $state('');
 
 	/** @type {string} */
-	let name = '';
+	let name = $state('');
 	/** @type {string} */
-	let selector = '';
+	let selector = $state('');
 	/** @type {number} */
-	let width = 810;
+	let width = $state(810);
 	/** @type {number} */
-	let height = 1080;
+	let height = $state(1080);
 
 	/** @type {import('../lib/utils.js').Item | null} */
-	let preview = null;
+	let preview = $state(null);
 
 	/** @type {HTMLDialogElement}*/
-	let previewModal;
+	let previewModal = $state();
 
-	let downloadingAll = false;
+	let downloadingAll = $state(false);
 
 	/**
 	 * @param {number} i
@@ -53,14 +55,18 @@
 		localStorage.setItem('height', String(height));
 	};
 
-	$: if (browser && url.length) localStorage.setItem('url', url);
+	run(() => {
+		if (browser && url.length) localStorage.setItem('url', url);
+	});
 
-	$: if (preview && preview.file === null) {
-		preview.file = fetchImageBlob(preview.url, preview.selector, preview.width, preview.height);
-	}
+	run(() => {
+		if (preview && preview.file === null) {
+			preview.file = fetchImageBlob(preview.url, preview.selector, preview.width, preview.height);
+		}
+	});
 
 	/** @type {import('../lib/utils.js').Item[]}*/
-	let items = [];
+	let items = $state([]);
 
 	onMount(() => {
 		url = localStorage.getItem('url') || url;
@@ -83,7 +89,7 @@
 
 <div class="u-grid">
 	<form
-		on:submit={(e) => {
+		onsubmit={(e) => {
 			addItem();
 		}}
 		class="u-grid"
@@ -130,7 +136,7 @@
 		<div>
 			<button
 				disabled={downloadingAll}
-				on:click={async (e) => {
+				onclick={async (e) => {
 					downloadingAll = true;
 					Promise.all(items.map(download)).then(() => (downloadingAll = false));
 				}}
@@ -156,12 +162,12 @@
 						<td>{width}</td>
 						<td class="actions">
 							<button
-								on:click={() => {
+								onclick={() => {
 									preview = items[i];
 									previewModal.showModal();
 								}}>View</button
 							>
-							<button on:click={() => removeItem(i)}>Remove</button>
+							<button onclick={() => removeItem(i)}>Remove</button>
 						</td>
 					</tr>
 				{/each}
@@ -178,9 +184,9 @@
 			</div>
 			<div>
 				{#await preview.file}
-					<button on:click={() => download(preview)}>Download</button>
+					<button onclick={() => download(preview)}>Download</button>
 				{/await}
-				<button on:click={() => previewModal.close()}>Close</button>
+				<button onclick={() => previewModal.close()}>Close</button>
 			</div>
 		</header>
 		<div class="image-container">

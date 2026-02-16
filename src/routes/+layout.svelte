@@ -1,10 +1,17 @@
 <script>
 	import '../styles.css';
+	/**
+	 * @typedef {Object} Props
+	 * @property {import('svelte').Snippet} [children]
+	 */
+
+	/** @type {Props} */
+	let { children } = $props();
 </script>
 
 <div class="u-grid container">
 	<h1>Screenshots</h1>
-	<slot />
+	{@render children?.()}
 </div>
 
 <style>

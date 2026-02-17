@@ -20,6 +20,18 @@ ratio](https://developer.mozilla.org/en-US/docs/Web/API/Window/devicePixelRatio)
 > There is a bug in Chromium that results in screenshots taller than 16384px having repeated content. This API doesn't
 > provide a workaround for that. If you need screenshots taller than this, look into other options.
 
+### API
+
+Make requests to `/api` with the following query parameters to fetch a screenshot.
+
+`url`: The URL to screenshot
+`selector`: (optional) A CSS selector for the element to capture. If omitted a full page capture will be returned.
+`width`: (optional) The viewport width
+`height`: (optional) The viewport height (note: if the selected element is taller than the viewport it will still
+attempt to capture the whole element)
+`delay`: (optional) A delay in milliseconds to wait before taking screenshot — can be useful to allow animations or
+loading to complete.
+
 ## Development
 
 The `puppeteer-core` and `@sparticuz/chromium-min` dependencies are pinned to specific versions because

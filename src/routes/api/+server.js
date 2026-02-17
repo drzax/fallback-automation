@@ -8,6 +8,7 @@ export let GET = async ({ url }) => {
 	const selector = url.searchParams.get('selector') || 'body';
 	const width = +(url.searchParams.get('width') || '0') || undefined;
 	const height = +(url.searchParams.get('height') || '0') || undefined;
+	const delay = +(url.searchParams.get('delay') || '0') || undefined;
 
 	if (!target) {
 		return error(404, 'URL must be provided.');
@@ -16,7 +17,7 @@ export let GET = async ({ url }) => {
 		return error(404, 'URL must be provided.');
 	}
 
-	const screenshot = await getScreenshot(target, selector, width, height);
+	const screenshot = await getScreenshot(target, selector, width, height, delay);
 
 	if (!screenshot) {
 		return error(500, 'Failed to generate screenshot.');

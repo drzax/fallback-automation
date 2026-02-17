@@ -22,15 +22,15 @@ ratio](https://developer.mozilla.org/en-US/docs/Web/API/Window/devicePixelRatio)
 
 ## Development
 
-The `puppeteer-core` and `@sparticuz/chromium-min` dependencies are pinned to specific versions because they
+The `puppeteer-core` and `@sparticuz/chromium-min` dependencies are pinned to specific versions because
 `@sparticuz/chromium-min` [doesn't follow semantic
 versioning](https://github.com/Sparticuz/chromium?tab=readme-ov-file#versioning) and the versions of these packages must
-be compatible. In addition the version of Chrome used [must be compatible with the version of Puppeeteer](https://pptr.dev/supported-browsers).
+be compatible. In addition the version of Chrome used [must be compatible with the version of
+Puppeeteer](https://pptr.dev/supported-browsers).
 
-To run locally, a local version of the Google Chrome binaries that work with the installed version of
-[puppeteer-core](https://pptr.dev) and
-[@sparticuz/chromium-min](https://github.com/Sparticuz/chromium?tab=readme-ov-file) must be installed locally. The
-easiest way to get them are is to run `npm run local-setup` which will download the required version and save it to
+To run locally, the Google Chrome binaries that work with the installed version of [puppeteer-core](https://pptr.dev)
+and [@sparticuz/chromium-min](https://github.com/Sparticuz/chromium?tab=readme-ov-file) must be installed locally. The
+easiest way to install them are is to run `npm run local-setup` which will download the required version and save it to
 `.cache-browser` if it doesn't exist and (optionally) update your `.env` file to point to the right binary.
 
 ```

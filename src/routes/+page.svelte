@@ -21,7 +21,7 @@
 	/** @type {import('../lib/utils.js').Item | null} */
 	let preview = $state(null);
 
-	/** @type {HTMLDialogElement}*/
+	/** @type {HTMLDialogElement|undefined}*/
 	let previewModal = $state();
 
 	let downloadingAll = $state(false);
@@ -164,7 +164,7 @@
 							<button
 								onclick={() => {
 									preview = items[i];
-									previewModal.showModal();
+									previewModal?.showModal();
 								}}>View</button
 							>
 							<button onclick={() => removeItem(i)}>Remove</button>
@@ -184,9 +184,9 @@
 			</div>
 			<div>
 				{#await preview.file}
-					<button onclick={() => download(preview)}>Download</button>
+					<button onclick={() => preview && download(preview)}>Download</button>
 				{/await}
-				<button onclick={() => previewModal.close()}>Close</button>
+				<button onclick={() => previewModal?.close()}>Close</button>
 			</div>
 		</header>
 		<div class="image-container">

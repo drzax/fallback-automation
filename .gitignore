@@ -6,6 +6,9 @@ node_modules
 /.svelte-kit
 /build
 
+# browser download path
+.cache-browser
+
 # OS
 .DS_Store
 Thumbs.db
